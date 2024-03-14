@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Available, Button, Form, Heading, ImageWrapper, Input, InputGroup, Label, LogoWrapper, NotAvailable, PDFViewer, Section, Span, Subtitle, Title, Wrapper } from "./styles";
 import { useState } from "react";
-import { ExistingList, InformesData } from "@/data/InformesData";
+import { ExistingList } from "@/data/InformesData";
 
 const Home = () => {
   const [cpf, setCpf] = useState<any>()
@@ -27,15 +27,15 @@ const Home = () => {
             <Image src={'/images/black_logo.png'} alt="ADUFPI Logo" fill />
           </LogoWrapper>
           <Heading>
-            <Title>Informe de Pagamentos UNIMED 2023</Title>
+            <Title>Informe de Pagamentos HUMANA 2023</Title>
             <Subtitle>Digite seu CPF para ter acesso ao seu informe de pagamentos</Subtitle>  
           </Heading>
           {(waiting || !cpfExists) ? (
             <>
               <InputGroup>
                 <Label>CPF</Label>
-                <Input type="number" placeholder="Digite seu CPF (apenas números)" required minLength={11} 
-                  onChange={(e) => setCpf(e.target.value)} value={cpf} />
+                <Input type="tel" placeholder="Digite seu CPF (apenas números)" required minLength={11} 
+                  onChange={(e) => setCpf(e.target.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'))} value={cpf} />
               </InputGroup>
               {(!waiting && !cpfExists) ? (
                 <NotAvailable>Não foi possível localizar o informe</NotAvailable>
