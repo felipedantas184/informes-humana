@@ -10,7 +10,7 @@ const Home = () => {
 
   const handleSubmitCpf = async (e: any) => {
     e.preventDefault()
-    if (ExistingList.includes(cpf)) {
+    if (ExistingList.includes(cpf.replace(/\D/g, ''))) {
       setCpfExists(true)
       setWaiting(false)
     } else {
@@ -27,7 +27,7 @@ const Home = () => {
             <Image src={'/images/black_logo.png'} alt="ADUFPI Logo" fill />
           </LogoWrapper>
           <Heading>
-            <Title>Informe de Pagamentos HUMANA 2023</Title>
+            <Title>Informe de Pagamentos HUMANA 2024</Title>
             <Subtitle>Digite seu CPF para ter acesso ao seu informe de pagamentos</Subtitle>  
           </Heading>
           {(waiting || !cpfExists) ? (
@@ -63,7 +63,7 @@ const Home = () => {
                 <Subtitle>CPF não encontrado</Subtitle>
               </>
             ) : (
-              <iframe src={`/informes/${cpf}.pdf`} width={'100%'} height={'100%'} />
+              <iframe src={`/informes/${cpf.replace(/\D/g, '')}.pdf`} width={'100%'} height={'100%'} />
             )
           )}
         </PDFViewer>
